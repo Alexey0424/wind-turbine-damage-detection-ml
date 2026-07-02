@@ -14,15 +14,15 @@ prototype wind turbine, using accelerometer signals, modal analysis and machine
 learning. Built as part of my M.Sc. thesis within a structural health monitoring (SHM)
 research project at **EIA University (Medellín, Colombia)**.
 
-- **Real hardware, real data** — 6,000+ vibration records collected over a 1.5-year
+- **Real hardware, real data**: 6,000+ vibration records collected over a 1.5-year
   experimental campaign on an instrumented turbine mast in East Antioquia, Colombia.
-- **Physically induced damage** — stiffness loss was created by manipulating the
+- **Physically induced damage**: stiffness loss was created by manipulating the
   tension of the guy wires that support the mast, producing 12 distinct damage
   scenarios plus healthy baselines.
-- **Physics-informed features** — damage shifts the structure's natural frequencies
-  (the first mode moves from ≈0.68 Hz healthy to ≈0.39 Hz damaged), so the models are
-  trained on modal frequencies extracted with Frequency Domain Decomposition rather
-  than on raw signals.
+- **Physics-informed features**: damage shifts the structure's natural frequencies
+  (in this turbine, the first vibration mode drops by nearly half between the healthy
+  and damaged states), so the models are trained on modal frequencies extracted with
+  Frequency Domain Decomposition rather than on raw signals.
 
 ## Results
 
@@ -30,7 +30,7 @@ Two supervised tasks, five algorithm families, identical training protocol
 (stratified 80/20 split, stratified 10-fold CV, random-search tuning, fixed seed).
 All numbers below are **hold-out** metrics reproduced from the executed notebook.
 
-**Task 1 — Damage detection (binary: healthy / damaged)**
+**Task 1: Damage detection (binary, healthy / damaged)**
 
 | Algorithm | Accuracy | AUC | Recall | Precision | F1 |
 |---|---|---|---|---|---|
@@ -38,9 +38,9 @@ All numbers below are **hold-out** metrics reproduced from the executed notebook
 | LightGBM | 0.914 | **0.973** | 0.914 | 0.912 | 0.913 |
 | Gradient Boosting | 0.908 | 0.966 | 0.908 | 0.907 | 0.907 |
 | KNN | 0.793 | 0.832 | 0.793 | 0.775 | 0.765 |
-| SVM (linear) | 0.750 | — | 0.750 | 0.563 | 0.643 |
+| SVM (linear) | 0.750 | n/a | 0.750 | 0.563 | 0.643 |
 
-**Task 2 — Damage localization (multiclass: healthy / top / bottom / top-bottom)**
+**Task 2: Damage localization (multiclass, healthy / top / bottom / top-bottom)**
 
 | Algorithm | Accuracy | AUC | Recall | Precision | F1 |
 |---|---|---|---|---|---|
@@ -48,13 +48,13 @@ All numbers below are **hold-out** metrics reproduced from the executed notebook
 | Gradient Boosting | 0.861 | 0.969 | 0.861 | 0.864 | 0.862 |
 | Random Forest | 0.835 | 0.957 | 0.835 | 0.838 | 0.835 |
 | KNN | 0.576 | 0.828 | 0.576 | 0.594 | 0.575 |
-| SVM (linear) | 0.388 | — | 0.388 | 0.522 | 0.345 |
+| SVM (linear) | 0.388 | n/a | 0.388 | 0.522 | 0.345 |
 
 <p align="center">
   <img src="assets/binary_confusion_matrix_lightgbm.png" width="46%" alt="Binary confusion matrix (LightGBM, hold-out)">
   <img src="assets/multiclass_confusion_matrix_lightgbm.png" width="46%" alt="Multiclass confusion matrix (LightGBM, hold-out)">
   <br>
-  <em>LightGBM hold-out confusion matrices — damage detection (left) and localization (right).</em>
+  <em>LightGBM hold-out confusion matrices: damage detection (left) and localization (right).</em>
 </p>
 
 Tree ensembles clearly dominate: the decision boundaries between damage states in
@@ -67,7 +67,7 @@ from its preserved outputs.
 
 ```
 raw accelerometry (6 channels @ 1 kHz, TDMS/LVM)
-   │  tare subtraction → detrend → Hann smoothing → Butterworth band-pass (0–30 Hz)
+   │  tare subtraction → detrend → Hann smoothing → Butterworth band-pass (0-30 Hz)
    │  → resample to 100 Hz → detrend
    ▼
 Frequency Domain Decomposition (per record)
@@ -92,31 +92,31 @@ plot and SHAP analysis preserved from the original training runs, is in
 
 | Section | Contents |
 |---|---|
-| 1–3 | Project intro, campaign labeling, signal-processing configuration |
+| 1-3 | Project intro, campaign labeling, signal-processing configuration |
 | 4 | Signal preprocessing & FDD feature extraction (runs on the private raw data) |
 | 5 | Data import, outlier treatment, dataset assembly |
-| 6.1 | Binary damage detection — 5 models, tuning, evaluation, deployment |
-| 6.2 | Multiclass damage localization — 5 models, tuning, evaluation, deployment |
+| 6.1 | Binary damage detection: 5 models, tuning, evaluation |
+| 6.2 | Multiclass damage localization: 5 models, tuning, evaluation |
 
 ## Interpretability
 
 <p align="center">
   <img src="assets/shap_summary_binary_lightgbm.png" width="55%" alt="SHAP summary (LightGBM, binary task)">
   <br>
-  <em>SHAP summary for the LightGBM detector: low first-mode frequencies push predictions toward "damaged" — matching the physics (stiffness loss lowers natural frequencies).</em>
+  <em>SHAP summary for the LightGBM detector: low first-mode frequencies push predictions toward "damaged", matching the physics (stiffness loss lowers natural frequencies).</em>
 </p>
 
 SHAP values (tree models) and permutation feature importance (others) confirm the
-models rely on the physically meaningful features — chiefly the lowest natural
-frequencies — rather than on artifacts, which is what makes the approach credible for
+models rely on the physically meaningful features, chiefly the lowest natural
+frequencies, rather than on artifacts, which is what makes the approach credible for
 a monitoring system that must generalize to unseen damage configurations.
 
 ## Data availability
 
 The accelerometry dataset (6,000+ records, 14 acquisition campaigns) was collected under
 a research project at EIA University and **is not publicly available**. The notebook
-preserves all executed outputs — score grids, hold-out metrics, confusion matrices and
-interpretability plots — so the entire pipeline can be reviewed without access to the
+preserves all executed outputs (score grids, hold-out metrics, confusion matrices and
+interpretability plots) so the entire pipeline can be reviewed without access to the
 raw data. No raw signals are included in this repository, and previews of derived
 features are limited to standard truncated table headers.
 
@@ -124,7 +124,7 @@ features are limited to standard truncated table headers.
 
 - Fixed `session_id` throughout: every split, fold and search is deterministic.
 - Normalization and imputation live **inside** the PyCaret pipeline, fitted on the
-  training split only — no leakage from the hold-out set.
+  training split only, with no leakage from the hold-out set.
 - Training used GPU acceleration (LightGBM OpenCL) where supported.
 - **Stack:** PyCaret 3 orchestrates **scikit-learn** estimators and pipelines under the
   hood (SVM, KNN, Random Forest and Gradient Boosting are scikit-learn models;
@@ -132,13 +132,13 @@ features are limited to standard truncated table headers.
   (filtering, resampling, CSD, SVD), data handling is **pandas/NumPy**, plots are
   **Matplotlib/seaborn**, interpretability is **SHAP**, and raw acquisition files are
   read with **npTDMS**.
-- Dependencies: [`requirements.txt`](requirements.txt) (Python 3.9–3.11 for PyCaret 3).
+- Dependencies: [`requirements.txt`](requirements.txt) (Python 3.9 to 3.11 for PyCaret 3).
 - Labels and figure text mix English and Spanish because the acquisition system was
   configured in Spanish; the notebook header includes a glossary.
 
 ## Author
 
-**Alexey David Velásquez Betancurt** — M.Sc. in Engineering.
+**Alexey David Velásquez Betancurt**, M.Sc. in Engineering.
 Thesis: machine-learning-based damage diagnosis methodology for wind turbines,
 EIA University, Medellín, Colombia.
 
