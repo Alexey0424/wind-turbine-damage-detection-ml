@@ -14,7 +14,7 @@ prototype wind turbine, using accelerometer signals, modal analysis and machine
 learning. Built as part of my M.Sc. thesis within a structural health monitoring (SHM)
 research project at **EIA University (Medellín, Colombia)**.
 
-- **Real hardware, real data** — 6,888 vibration records collected over a 1.5-year
+- **Real hardware, real data** — 6,000+ vibration records collected over a 1.5-year
   experimental campaign on an instrumented turbine mast in East Antioquia, Colombia.
 - **Physically induced damage** — stiffness loss was created by manipulating the
   tension of the guy wires that support the mast, producing 12 distinct damage
@@ -76,7 +76,7 @@ Frequency Domain Decomposition (per record)
    │  → peak picking: top-5 natural frequencies × 2 axes = 10 features
    ▼
 data preparation
-   │  class balancing across 14 campaigns → 6,888 records
+   │  class balancing across 14 campaigns → 6,000+ records
    │  IQR outlier replacement (per damage scenario, median imputation)
    ▼
 AutoML training (PyCaret)
@@ -113,7 +113,7 @@ a monitoring system that must generalize to unseen damage configurations.
 
 ## Data availability
 
-The accelerometry dataset (6,888 records, 14 acquisition campaigns) was collected under
+The accelerometry dataset (6,000+ records, 14 acquisition campaigns) was collected under
 a research project at EIA University and **is not publicly available**. The notebook
 preserves all executed outputs — score grids, hold-out metrics, confusion matrices and
 interpretability plots — so the entire pipeline can be reviewed without access to the
