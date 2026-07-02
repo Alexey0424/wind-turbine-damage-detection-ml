@@ -2,7 +2,11 @@
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![PyCaret](https://img.shields.io/badge/AutoML-PyCaret%203-orange)
+![scikit-learn](https://img.shields.io/badge/ML-scikit--learn-f89939)
 ![LightGBM](https://img.shields.io/badge/Best%20model-LightGBM-green)
+![SHAP](https://img.shields.io/badge/Interpretability-SHAP-9cf)
+![pandas](https://img.shields.io/badge/Data-pandas%20%7C%20NumPy-150458)
+![SciPy](https://img.shields.io/badge/Signal%20processing-SciPy-8caae6)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 Vibration-based **detection and localization of structural damage** on a real 14-meter
@@ -123,6 +127,12 @@ features are limited to standard truncated table headers.
 - Normalization and imputation live **inside** the PyCaret pipeline, fitted on the
   training split only — no leakage from the hold-out set.
 - Training used GPU acceleration (LightGBM OpenCL) where supported.
+- **Stack:** PyCaret 3 orchestrates **scikit-learn** estimators and pipelines under the
+  hood (SVM, KNN, Random Forest and Gradient Boosting are scikit-learn models;
+  LightGBM plugs in through its scikit-learn API). Signal processing is **SciPy**
+  (filtering, resampling, CSD, SVD), data handling is **pandas/NumPy**, plots are
+  **Matplotlib/seaborn**, interpretability is **SHAP**, and raw acquisition files are
+  read with **npTDMS**.
 - Dependencies: [`requirements.txt`](requirements.txt) (Python 3.9–3.11 for PyCaret 3).
 - Labels and figure text mix English and Spanish because the acquisition system was
   configured in Spanish; the notebook header includes a glossary.
