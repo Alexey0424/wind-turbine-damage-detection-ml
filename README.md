@@ -60,9 +60,8 @@ All numbers below are **hold-out** metrics reproduced from the executed notebook
 Tree ensembles clearly dominate: the decision boundaries between damage states in
 modal-frequency space are non-linear, which is exactly where a linear SVM collapses to
 majority-class behaviour (Kappa = 0) and boosted trees shine. This notebook is the
-**baseline** of the thesis methodology; the refined version of the methodology
-developed in the thesis — with improved feature engineering on the same monitoring
-system — reached **99.1% accuracy in damage detection and 98.6% in localization**.
+**baseline** of the thesis methodology, and every number above is reproduced directly
+from its preserved outputs.
 
 ## How it works
 
