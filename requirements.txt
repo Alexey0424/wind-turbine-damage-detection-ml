@@ -1,0 +1,14 @@
+# Core scientific stack
+numpy>=1.23
+pandas>=1.5
+scipy>=1.10
+matplotlib>=3.6
+seaborn>=0.12
+
+# Acquisition-file reader (National Instruments TDMS)
+npTDMS>=1.7
+
+# AutoML training framework and model libraries
+pycaret>=3.0
+lightgbm>=3.3
+shap>=0.42

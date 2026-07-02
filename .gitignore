@@ -1,0 +1,27 @@
+# Data — the accelerometry dataset is confidential and must never be committed
+*.tdms
+*.lvm
+*.csv
+*.parquet
+*.feather
+*.h5
+data/
+datasets/
+
+# Serialized models
+*.pkl
+*.joblib
+*.sav
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
