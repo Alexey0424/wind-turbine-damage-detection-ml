@@ -8,6 +8,9 @@
 ![pandas](https://img.shields.io/badge/Data-pandas%20%7C%20NumPy-150458)
 ![SciPy](https://img.shields.io/badge/Signal%20processing-SciPy-8caae6)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
+<p align="center">
+  <img src="assets/hero.jpg" alt="A guyed wind turbine on an Andean hillside streams vibration signals into a frequency-spectrum console" width="100%">
+</p>
 
 Vibration-based **detection and localization of structural damage** on a real 14-meter
 prototype wind turbine, using accelerometer signals, modal analysis and machine
