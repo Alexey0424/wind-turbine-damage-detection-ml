@@ -9,7 +9,7 @@
 ![SciPy](https://img.shields.io/badge/Signal%20processing-SciPy-8caae6)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 <p align="center">
-  <img src="assets/hero.jpg" alt="A guyed wind turbine on an Andean hillside streams vibration signals into a frequency-spectrum console" width="100%">
+  <img src="assets/hero.gif" alt="A guyed wind turbine on an Andean hillside streams vibration signals into a frequency-spectrum console" width="100%">
 </p>
 
 Vibration-based **detection and localization of structural damage** on a real 14-meter
